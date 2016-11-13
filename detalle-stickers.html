@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Introduccion</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript">
+    //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
+    var app = angular.module("Stickers", []);
+    app.controller("StickersController", function($scope, $http) {
+        $scope.titulo = "prueba ok1";
+        $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json").then(function(data) {
+            console.log('data', data);
+            $scope.data = data;
+
+        }, function(error) {
+            console.log('error', error);
+        });
+    });
+    </script>
+</head>
+
+<body ng-app="Stickers">
+    <div ng-controller="StickersController">
+       <h2>{{titulo}}</h2>
+       <span>{{data}}</span>
+    </div>
+</body>
+
+</html>
