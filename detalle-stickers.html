@@ -9,9 +9,9 @@
     var app = angular.module("Stickers", []);
     app.controller("StickersController", function($scope, $http) {
         $scope.titulo = "prueba ok1";
-        $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json").then(function(data) {
+        $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
             console.log('data', data);
-            $scope.data = data;
+            $scope.stickers = data;
 
         }, function(error) {
             console.log('error', error);
@@ -21,9 +21,19 @@
 </head>
 
 <body ng-app="Stickers">
-    <div ng-controller="StickersController">
-       <h2>{{titulo}}</h2>
-       <span>{{data}}</span>
+    <div class="content" ng-controller="StickersController">
+        <h2>{{titulo}}</h2>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="sticker in stickers">
+                <div class="thumbnail">
+                    <img ng-src="sticker.image" alt="{{sticker.name}}">
+                    <div class="caption">
+                        <h3>{{sticker.name}}</h3>
+                        <p>#{{sticker.codigo}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
