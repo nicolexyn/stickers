@@ -1,7 +1,7 @@
 [
-	{ "codigo": "developer01", "name": "AngularJS", "image": "https://dl.dropboxusercontent.com/s/zmtt3mtdldvjyce/developer01.png" },
-    { "codigo": "developer02", "name": "Bootstrap", "image": "https://dl.dropboxusercontent.com/s/zmtt3mtdldvjyce/developer02.png" },
-    { "codigo": "developer03", "name": "Linux", "image": "https://dl.dropboxusercontent.com/s/zmtt3mtdldvjyce/developer03.png" },
-    { "codigo": "developer04", "name": "Node JS", "image": "https://dl.dropboxusercontent.com/s/zmtt3mtdldvjyce/developer04.png" },
-    { "codigo": "developer05", "name": "CSS 3", "image": "https://dl.dropboxusercontent.com/s/zmtt3mtdldvjyce/developer05.png" }
+	{ "codigo": "developer01", "name": "AngularJS", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/developer01.png" },
+    { "codigo": "developer02", "name": "Bootstrap", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/developer02.png" },
+    { "codigo": "developer03", "name": "Linux", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/developer03.png" },
+    { "codigo": "developer04", "name": "Node JS", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/developer04.png" },
+    { "codigo": "developer05", "name": "CSS 3", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/developer05.png" }
 ]
