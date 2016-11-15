@@ -1,0 +1,217 @@
+<html>
+
+<head>
+    <title>Introduccion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/dirPagination.js"></script>
+    <style type="text/css">
+    .sticker-admin th {
+        background-color: #ed1616;
+        color: white;
+    }
+    
+    .stepwizard-step p {
+        margin-top: 10px;
+    }
+    
+    .stepwizard-row {
+        display: table-row;
+    }
+    
+    .stepwizard {
+        display: table;
+        width: 50%;
+        position: relative;
+    }
+    
+    .stepwizard-step button[disabled] {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+    }
+    
+    .stepwizard-row:before {
+        top: 60px;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 5px;
+        background-color: #ed1616;
+        z-order: 0;
+    }
+    
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+    
+    .btn-circle {
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        padding: 50px 0;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.428571429;
+        border-radius: 100px;
+        border-color: #ed1616;
+        background-color: #ed1616;
+    }
+    
+    .panel-primary>.panel-heading {
+        color: #fff;
+        background-color: #ed1616;
+        border-color: #ed1616;
+    }
+    
+    .panel-primary {
+        border-color: #ed1616;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #ed1616;
+        border-color: #ed1616;
+    }
+    
+    .label-primary {
+        background-color: #ed1616;
+    }
+    </style>
+    <script type="text/javascript">
+    //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
+    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination']);
+    app.controller("StickersController", function($scope, $http) {
+        $scope.pedido = [];
+        $scope.tamanio = "5x5";
+        $scope.medida = 3;
+        $scope.currentPage = 1;
+        $scope.pageSize = 10;
+        $scope.showError = false;
+        $scope.showLoading = true;
+        $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
+            $scope.showLoading = false;
+            $scope.stickers = data;
+
+        }, function(error) {
+            console.log('error', error);
+            $scope.showLoading = false;
+            $scope.showError = true;
+        });
+        $scope.addStiker = function(sticker) {
+            $scope.pedido.push(sticker);
+        };
+        $scope.removeStiker = function(sticker) {
+            $scope.pedido.splice($scope.pedido.indexOf(sticker), 1);
+        };
+        $scope.copyToClipboard1 = function() {
+            var resultList = [];
+            angular.forEach($scope.pedido, function(item) {
+                resultList.push(item.codigo + '-' + $scope.tamanio);
+            });
+            copyToClipboard(JSON.stringify(resultList.join(',')));
+            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra haciendo click derecho + Pegar!");
+        };
+    });
+
+    var copyToClipboard = function(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(element).select();
+        document.execCommand("copy");
+        $temp.remove();
+    };
+    </script>
+</head>
+
+<body ng-app="Stickers">
+    <div class="content sticker-admin" ng-controller="StickersController">
+        <div class="row" style="background-color: white;margin-top: 20px;">
+            <div class="col-md-12">
+                <div class="row" ng-show="showError">
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-danger" role="alert"><strong><i class="glyphicon glyphicon-alert"></i> Se produjo un error al intentar cargar el listado de Stickers. Por favor intentá cargar de nuevo la pagina presionando F5.</strong> </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="showLoading">
+                    <div class="col-md-12 text-center">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    </div>
+                </div>
+                <div class="row" ng-show="!showLoading">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong><i class="glyphicon glyphicon-search"></i> Buscá y agrega tus Stickers</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-7" style="padding-bottom: 20px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon label-primary" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
+                                        <input type="text" ng-model="search" class="form-control" placeholder="Ingresar texto a buscar..." aria-describedby="sizing-addon1">
+                                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
+                          </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="padding-bottom: 20px;">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 3"><i class="glyphicon glyphicon-zoom-out"></i></button>
+                                        <button type="button" class="btn btn-primary" ng-click="medida = medida + 1;" ng-disabled="medida == 12"><i class="glyphicon glyphicon-zoom-in"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding-bottom: 20px; padding-left: 0;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon label-primary" style="color: white;">Items</span>
+                                        <input type="number" class="form-control" min="0" max="20" name="" ng-model="pageSize">
+                                    </div>
+                                </div>
+                                <div class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
+                                    <div class="thumbnail">
+                                        <img src="{{sticker.image}}" alt="{{sticker.name}}">
+                                        <div class="caption text-center">
+                                            <h5 style="margin-top: 0px;"><strong>{{sticker.name}}</strong></h5>
+                                            <button type="button" class="btn btn-primary btn-sm btn-block" ng-disabled="pedido.length == 20" ng-click="addStiker(sticker)">Agregar</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success btn-lg btn-block" ng-click="copyToClipboard1()">
+                                        <strong ng-show="pedido.length == 0">Copiar JSON</strong>
+                                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="dirPagination.tpl.html">
+        <ul class="pagination" ng-if="1 < pages.length || !autoHide">
+            <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+                <a href="" ng-click="setCurrent(1)">&laquo;</a>
+            </li>
+            <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+                <a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a>
+            </li>
+            <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+            </li>
+            <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                <a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a>
+            </li>
+            <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
+            </li>
+        </ul>
+    </script>
+</body>
+
+</html>
