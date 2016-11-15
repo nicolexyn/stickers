@@ -88,6 +88,7 @@
     app.controller("StickersController", function($scope, $http) {
         $scope.pedido = [];
         $scope.tamanio = "5x5";
+        $scope.hover = false;
         $scope.medida = 3;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -208,8 +209,9 @@
                             <div class="panel-body">
                                 <div class="col-md-12">
                                     <div class="col-xs-3" ng-repeat="item in pedido track by $index">
-                                        <a href="#" class="thumbnail" ng-click="removeStiker(item)">
-                                            <img src="{{item.image}}" alt="{{item.name}}">
+                                        <a href="#" class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="removeStiker(item)">
+                                            <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar">
+                                            <img src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
                                         </a>
                                     </div>
                                     <!-- <div ng-show="!pedido.length" class="alert alert-info" role="alert"><strong><i class="glyphicon glyphicon-info-sign"></i> Para comenzar, debes agregar un sticker al listado.</strong></div> -->
