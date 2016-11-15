@@ -23,7 +23,7 @@
     
     .stepwizard {
         display: table;
-        width: 80%;
+        width: 50%;
         position: relative;
     }
     
@@ -33,7 +33,7 @@
     }
     
     .stepwizard-row:before {
-        top: 100px;
+        top: 60px;
         bottom: 0;
         position: absolute;
         content: " ";
@@ -50,15 +50,35 @@
     }
     
     .btn-circle {
-        width: 200px;
-        height: 200px;
+        width: 120px;
+        height: 120px;
         text-align: center;
         padding: 50px 0;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: bold;
         line-height: 1.428571429;
         border-radius: 100px;
         border-color: #ed1616;
+        background-color: #ed1616;
+    }
+    
+    .panel-primary>.panel-heading {
+        color: #fff;
+        background-color: #ed1616;
+        border-color: #ed1616;
+    }
+    
+    .panel-primary {
+        border-color: #ed1616;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #ed1616;
+        border-color: #ed1616;
+    }
+    
+    .label-primary {
         background-color: #ed1616;
     }
     </style>
@@ -67,9 +87,9 @@
     var app = angular.module("Stickers", ['angularUtils.directives.dirPagination']);
     app.controller("StickersController", function($scope, $http) {
         $scope.pedido = [];
-        $scope.medida = 2;
+        $scope.medida = 3;
         $scope.currentPage = 1;
-        $scope.pageSize = 4;
+        $scope.pageSize = 20;
         $scope.showError = false;
         $scope.showLoading = true;
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
@@ -93,7 +113,7 @@
                 resultList.push(item.codigo);
             });
             copyToClipboard(JSON.stringify(resultList.join(',')));
-            alert("Texto copiado exitosamente!");
+            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra!");
         };
     });
 
@@ -108,95 +128,101 @@
 </head>
 
 <body ng-app="Stickers">
-    <div class="content sticker-admin" style="background-color: white;margin-top: 20px;" ng-controller="StickersController">
-        <div class="row" ng-show="showError">
-            <div class="col-md-12 text-center">
-                <div class="alert alert-danger" role="alert"><strong><i class="glyphicon glyphicon-alert"></i> Se produjo un error al intentar cargar el listado de Stickers. Por favor intentá cargar de nuevo la pagina presionando F5.</strong> </div>
-            </div>
-        </div>
-        <div class="row" ng-show="showLoading">
-            <div class="col-md-12 text-center">
-                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-            </div>
-        </div>
-        <div class="row" ng-show="!showLoading">
-            <div class="col-md-12" style="padding-bottom: 20px;">
-                <div class="stepwizard col-md-offset-1">
-                    <div class="stepwizard-row setup-panel">
-                        <div class="stepwizard-step">
-                            <a href="#step-1" style="white-space: normal;" type="button" class="btn btn-danger btn-circle">Busca y selecciona tus Stickers</a>
-                            <h3 style="margin-top: 15px;"><span class="label label-danger" style="background-color: #ed1616">Paso 1 <i class="glyphicon glyphicon-search"></i></span></h3>
-                        </div>
-                        <div class="stepwizard-step">
-                            <a href="#step-2" style="white-space: normal;" type="button" class="btn btn-danger btn-circle">Copiar listado presionando el boton verde</a>
-                            <h3 style="margin-top: 15px;"><span class="label label-danger" style="background-color: #ed1616">Paso 2 <i class="glyphicon glyphicon-copy"></i></span></h3>
-                        </div>
-                        <div class="stepwizard-step">
-                            <a href="#step-3" style="white-space: normal;" type="button" class="btn btn-danger btn-circle">Pegar listado en comentario de la compra o por email</a>
-                            <h3 style="margin-top: 15px;"><span class="label label-danger" style="background-color: #ed1616">Paso 3 <i class="glyphicon glyphicon-paste"></i></span></h3>
-                        </div>
+    <div class="content sticker-admin" ng-controller="StickersController">
+        <div class="row" style="background-color: white;margin-top: 20px;">
+            <div class="col-md-12">
+                <div class="row" ng-show="showError">
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-danger" role="alert"><strong><i class="glyphicon glyphicon-alert"></i> Se produjo un error al intentar cargar el listado de Stickers. Por favor intentá cargar de nuevo la pagina presionando F5.</strong> </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><strong><i class="glyphicon glyphicon-list"></i> Mi listado de Stickers</strong></div>
-                    <div class="panel-body">
-                        <div class="col-md-12">
-                            <div ng-show="!pedido.length" class="alert alert-info" role="alert" style="margin-bottom: 0px;"><strong><i class="glyphicon glyphicon-info-sign"></i> Para comenzar, debes agregar un sticker al listado.</strong></div>
-                            <table class="table table-sm" ng-show="pedido.length">
-                                <tbody>
-                                    <tr ng-repeat="item in pedido track by $index">
-                                        <td scope="row"><img class="img-rounded" height="30" src="{{item.image}}"></td>
-                                        <td scope="row"><strong>{{$index + 1}}</strong></td>
-                                        <td><span class="label label-info">#{{item.codigo}}</span> - {{item.name}}</td>
-                                        <td><a href="" class="btn btn-danger btn-sm" ng-click="removeStiker(item)" role="button"><i class="glyphicon glyphicon-remove"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button ng-show="pedido.length" type="button" class="btn btn-success btn-lg btn-block" ng-disabled="!pedido.length" ng-click="copyToClipboard1()">
-                                <i class="glyphicon glyphicon-copy"></i> Copiar Listado</button>
-                        </div>
+                <div class="row" ng-show="showLoading">
+                    <div class="col-md-12 text-center">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><strong><i class="glyphicon glyphicon-search"></i> Busqueda y selección de Stickers</strong></div>
-                    <div class="panel-body">
-                        <div class="col-md-8" style="padding-bottom: 20px;">
-                            <div class="input-group">
-                                <span class="input-group-addon label-primary" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
-                                <input type="text" ng-model="search" class="form-control" placeholder="Ingresar texto a buscar..." aria-describedby="sizing-addon1">
-                                <span class="input-group-btn">
-                            <button style="padding: 9px;" class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
-                          </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2" style="padding-bottom: 20px;width: 100px;">
-                            <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                                <button style="padding: 7px;" type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 2"><i class="glyphicon glyphicon-zoom-out"></i></button>
-                                <button style="padding: 7px;" type="button" class="btn btn-primary" ng-click="medida = medida + 1;" ng-disabled="medida == 12"><i class="glyphicon glyphicon-zoom-in"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-md-2" style="padding-bottom: 20px; padding-right: 0;">
-                            <div class="input-group">
-                                <span class="input-group-addon label-primary" style="color: white;">Items</span>
-                                <input type="number" class="form-control" min="0" max="20" name="" ng-model="pageSize">
-                            </div>
-                        </div>
-                        <div class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
-                            <div class="thumbnail">
-                                <img src="{{sticker.image}}" alt="{{sticker.name}}">
-                                <div class="caption text-center">
-                                    <h4>{{sticker.name}}</h4>
-                                    <h5><span class="label label-info">#{{sticker.codigo}}</span></h5>
-                                    <p><a href="" class="btn btn-primary btn-sm" ng-click="addStiker(sticker)" role="button">Agregar</a></p>
+                <div class="row" ng-show="!showLoading">
+                    <div class="col-md-12" style="padding-bottom: 20px;">
+                        <div class="stepwizard col-md-offset-3">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" style="white-space: normal;padding: 23px 0;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-search"></i><br>Busca y agrega</a>
+                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 1 </span></h3>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" style="white-space: normal;padding: 23px;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-copy"></i><br>Copiar Listado</a>
+                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 2</span></h3>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" style="white-space: normal;padding: 20px;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-paste"></i><br>Envianos el listado</a>
+                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 3</span></h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 text-center">
-                            <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong><span>Paso 1 - </span> <i class="glyphicon glyphicon-search"></i> Buscá y agrega Stickers</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-7" style="padding-bottom: 20px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon label-primary" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
+                                        <input type="text" ng-model="search" class="form-control" placeholder="Ingresar texto a buscar..." aria-describedby="sizing-addon1">
+                                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
+                          </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="padding-bottom: 20px;">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 3"><i class="glyphicon glyphicon-zoom-out"></i></button>
+                                        <button type="button" class="btn btn-primary" ng-click="medida = medida + 1;" ng-disabled="medida == 12"><i class="glyphicon glyphicon-zoom-in"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding-bottom: 20px; padding-left: 0;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon label-primary" style="color: white;">Items</span>
+                                        <input type="number" class="form-control" min="0" max="20" name="" ng-model="pageSize">
+                                    </div>
+                                </div>
+                                <div class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
+                                    <div class="thumbnail">
+                                        <img src="{{sticker.image}}" alt="{{sticker.name}}">
+                                        <div class="caption text-center">
+                                            <h5 style="margin-top: 0px;"><strong>{{sticker.name}}</strong></h5>
+                                            <button type="button" class="btn btn-primary btn-sm btn-block" ng-disabled="pedido.length == 20" ng-click="addStiker(sticker)">Agregar</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><strong ng-show="pedido.length == 0">Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < 20">Te quedan {{20 - pedido.length}} Stickers!</strong><strong ng-show="pedido.length == 20">Listado completo!</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="col-xs-3" ng-repeat="item in pedido track by $index">
+                                        <a href="#" class="thumbnail" ng-click="removeStiker(item)">
+                                            <img src="{{item.image}}" alt="{{item.name}}">
+                                        </a>
+                                    </div>
+                                    <!-- <div ng-show="!pedido.length" class="alert alert-info" role="alert"><strong><i class="glyphicon glyphicon-info-sign"></i> Para comenzar, debes agregar un sticker al listado.</strong></div> -->
+                                    <!-- <table class="table table-sm" ng-show="pedido.length">
+                                        <tbody>
+                                            <tr ng-repeat="item in pedido track by $index">
+                                                <td scope="row"><img class="img-rounded" height="30" src="{{item.image}}"></td>
+                                                <td><a href="" class="btn btn-danger btn-xs" ng-click="removeStiker(item)" role="button"><i class="glyphicon glyphicon-remove"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table> -->
+                                    <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="!pedido.length" ng-click="copyToClipboard1()"><strong><span>Paso 2 - </span> <i class="glyphicon glyphicon-copy"></i> Copiar Listado</strong></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
