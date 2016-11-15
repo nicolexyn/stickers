@@ -87,9 +87,10 @@
     var app = angular.module("Stickers", ['angularUtils.directives.dirPagination']);
     app.controller("StickersController", function($scope, $http) {
         $scope.pedido = [];
+        $scope.tamanio = "5x5";
         $scope.medida = 3;
         $scope.currentPage = 1;
-        $scope.pageSize = 20;
+        $scope.pageSize = 10;
         $scope.showError = false;
         $scope.showLoading = true;
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
@@ -110,10 +111,10 @@
         $scope.copyToClipboard1 = function() {
             var resultList = [];
             angular.forEach($scope.pedido, function(item) {
-                resultList.push(item.codigo);
+                resultList.push(item.codigo + '-' + $scope.tamanio);
             });
             copyToClipboard(JSON.stringify(resultList.join(',')));
-            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra!");
+            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra haciendo click derecho + Pegar!");
         };
     });
 
@@ -162,7 +163,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><strong><span>Paso 1 - </span> <i class="glyphicon glyphicon-search"></i> Buscá y agrega Stickers</strong></div>
+                            <div class="panel-heading"><strong><i class="glyphicon glyphicon-search"></i> Buscá y agrega tus Stickers</strong></div>
                             <div class="panel-body">
                                 <div class="col-md-7" style="padding-bottom: 20px;">
                                     <div class="input-group">
@@ -203,7 +204,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><strong ng-show="pedido.length == 0">Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < 20">Te quedan {{20 - pedido.length}} Stickers!</strong><strong ng-show="pedido.length == 20">Listado completo!</strong></div>
+                            <div class="panel-heading"><strong>Mi Plancha de Stickers</strong></div>
                             <div class="panel-body">
                                 <div class="col-md-12">
                                     <div class="col-xs-3" ng-repeat="item in pedido track by $index">
@@ -220,7 +221,10 @@
                                             </tr>
                                         </tbody>
                                     </table> -->
-                                    <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="!pedido.length" ng-click="copyToClipboard1()"><strong><span>Paso 2 - </span> <i class="glyphicon glyphicon-copy"></i> Copiar Listado</strong></button>
+                                    <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="pedido.length < 20" ng-click="copyToClipboard1()">
+                                        <strong ng-show="pedido.length == 0">Paso 1 - Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < 20">Te quedan {{20 - pedido.length}} Stickers!</strong>
+                                        <strong ng-show="pedido.length == 20"><span>Paso 2 - </span> <i class="glyphicon glyphicon-copy"></i> Hace click aca!</strong>
+                                    </button>
                                 </div>
                             </div>
                         </div>
