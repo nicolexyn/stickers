@@ -89,32 +89,29 @@
         $scope.pedido = [];
         $scope.tamanio = "5x5";
         $scope.medida = 2;
+        $scope.hover = false;
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 12;
         $scope.showError = false;
         $scope.showLoading = true;
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
             $scope.showLoading = false;
-            $scope.stickers = data;
+            $scope.stickers = data.data;
+
+            angular.forEach($scope.stickers, function(item){
+                item.codigo = item.image.substr(item.image.indexOf("developer/") + 10, item.image.length).replace(".jpg", "");
+            });
 
         }, function(error) {
             console.log('error', error);
             $scope.showLoading = false;
             $scope.showError = true;
         });
-        $scope.addStiker = function(sticker) {
-            $scope.pedido.push(sticker);
-        };
         $scope.removeStiker = function(sticker) {
-            $scope.pedido.splice($scope.pedido.indexOf(sticker), 1);
+            $scope.stickers.splice($scope.stickers.indexOf(sticker), 1);
         };
         $scope.copyToClipboard1 = function() {
-            var resultList = [];
-            angular.forEach($scope.pedido, function(item) {
-                resultList.push(item.codigo + '-' + $scope.tamanio);
-            });
-            copyToClipboard(JSON.stringify(resultList.join(',')));
-            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra haciendo click derecho + Pegar!");
+            copyToClipboard(JSON.stringify($scope.stickers));
         };
     });
 
@@ -168,9 +165,10 @@
                                         <input type="number" class="form-control" min="0" max="20" name="" ng-model="pageSize">
                                     </div>
                                 </div>
-                                <div class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
-                                    <div class="thumbnail">
-                                        <img src="{{sticker.image}}" alt="{{sticker.name}}">
+                                <div class="col-md-{{medida}}" dir-paginate="sticker in stickers | filter: search | itemsPerPage: pageSize">
+                                    <div class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" >
+                                        <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar" ng-click="removeStiker(sticker)">
+                                        <img src="{{sticker.image}}" ng-show="!hover" alt="{{sticker.name}}">
                                         <div class="caption text-center">
                                             <input class="form-control" type="text" name="" ng-model="sticker.image">
                                             <input class="form-control" type="text" name="" ng-model="sticker.name">
@@ -186,8 +184,8 @@
                     </div>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-success btn-lg btn-block" ng-click="copyToClipboard1()">
-                                        <strong ng-show="pedido.length == 0">Copiar JSON</strong>
-                                    </button>
+                            <strong>Copiar JSON</strong>
+                        </button>
                     </div>
                 </div>
             </div>
