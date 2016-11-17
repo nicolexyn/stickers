@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-2.2.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/dirPagination.js"></script>
     <style type="text/css">
     .sticker-admin th {
@@ -84,13 +85,14 @@
     </style>
     <script type="text/javascript">
     //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
-    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination']);
-    app.controller("StickersController", function($scope, $http) {
+    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
+    app.controller("StickersController", function($scope, $http, $uibModal) {
         $scope.pedido = [];
-        $scope.tamanio = "10x10";
+        $scope.tamanio = "9x9";
+        $scope.hover = false;
         $scope.medida = 3;
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 8;
         $scope.showError = false;
         $scope.showLoading = true;
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-programmer.json?time=" + new Date().getTime()).then(function(data) {
@@ -114,7 +116,22 @@
                 resultList.push(item.codigo + '-' + $scope.tamanio);
             });
             copyToClipboard(JSON.stringify(resultList.join(',')));
-            alert("Paso 3 - Ya copiaste el listado! NO LO PIERDAS! ahora envianos el listado por mail o en el comentario de la compra haciendo click derecho + Pegar!");
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'modal.html',
+                controller: 'ModalInstanceCtrl',
+                controllerAs: '$ctrl'
+            });
+        };
+    });
+
+    app.controller('ModalInstanceCtrl', function($uibModalInstance) {
+        var $ctrl = this;
+
+        $ctrl.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
         };
     });
 
@@ -143,27 +160,9 @@
                     </div>
                 </div>
                 <div class="row" ng-show="!showLoading">
-                    <div class="col-md-12" style="padding-bottom: 20px;">
-                        <div class="stepwizard col-md-offset-3">
-                            <div class="stepwizard-row setup-panel">
-                                <div class="stepwizard-step">
-                                    <a href="#step-1" style="white-space: normal;padding: 23px 0;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-search"></i><br>Busca y agrega</a>
-                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 1 </span></h3>
-                                </div>
-                                <div class="stepwizard-step">
-                                    <a href="#step-2" style="white-space: normal;padding: 23px;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-copy"></i><br>Copiar Listado</a>
-                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 2</span></h3>
-                                </div>
-                                <div class="stepwizard-step">
-                                    <a href="#step-3" style="white-space: normal;padding: 20px;" type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-paste"></i><br>Envianos el listado</a>
-                                    <h3 style="margin-top: 10px;"><span class="label label-danger" style="background-color: #ed1616">Paso 3</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-8">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><strong><i class="glyphicon glyphicon-search"></i> Buscá y agrega tus Stickers</strong></div>
+                            <div class="panel-heading"><strong>Catalogo de stickers</strong></div>
                             <div class="panel-body">
                                 <div class="col-md-7" style="padding-bottom: 20px;">
                                     <div class="input-group">
@@ -204,27 +203,18 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><strong>Mi Plancha de Stickers</strong></div>
+                            <div class="panel-heading"><strong>Vista previa de tu plantilla</strong></div>
                             <div class="panel-body">
                                 <div class="col-md-12">
                                     <div class="col-xs-6" ng-repeat="item in pedido track by $index">
-                                        <a href="#" class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="removeStiker(item)">
+                                        <a href="" class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="removeStiker(item)">
                                             <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar">
                                             <img src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
                                         </a>
                                     </div>
-                                    <!-- <div ng-show="!pedido.length" class="alert alert-info" role="alert"><strong><i class="glyphicon glyphicon-info-sign"></i> Para comenzar, debes agregar un sticker al listado.</strong></div> -->
-                                    <!-- <table class="table table-sm" ng-show="pedido.length">
-                                        <tbody>
-                                            <tr ng-repeat="item in pedido track by $index">
-                                                <td scope="row"><img class="img-rounded" height="30" src="{{item.image}}"></td>
-                                                <td><a href="" class="btn btn-danger btn-xs" ng-click="removeStiker(item)" role="button"><i class="glyphicon glyphicon-remove"></i></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
                                     <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="pedido.length < 4" ng-click="copyToClipboard1()">
                                         <strong ng-show="pedido.length == 0">Paso 1 - Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < 4">Te quedan {{4 - pedido.length}} Stickers!</strong>
-                                        <strong ng-show="pedido.length == 4"><span>Paso 2 - </span> <i class="glyphicon glyphicon-copy"></i> Hace click aca!</strong>
+                                        <strong ng-show="pedido.length == 4">Paso 2 - <i class="glyphicon glyphicon-copy"></i> Copiar Listado!</strong>
                                     </button>
                                 </div>
                             </div>
@@ -252,6 +242,19 @@
                 <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
             </li>
         </ul>
+    </script>
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-header">
+            <h1 class="modal-title" id="modal-title"><strong>Listo!</strong> ya tenes copiada tu plantilla.</h1>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <h3><strong>NO LA PIERDAS!</strong> ahora envianos el listado por mail o en el comentario de la compra haciendo</h3>
+            <div class="text-center">
+                <h1>Click derecho + Pegar!</h1></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" type="button" ng-click="$ctrl.cancel()">Cerrar</button>
+        </div>
     </script>
 </body>
 
