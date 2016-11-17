@@ -99,7 +99,7 @@
             $scope.stickers = data.data;
 
             angular.forEach($scope.stickers, function(item){
-                item.codigo = item.image.substr(item.image.indexOf("developer/") + 10, item.image.length).replace(".jpg", "");
+                item.codigo = item.image.substr(item.image.indexOf("developer/") + 10, item.image.length).replace(".jpg", "").replace(".png", "");
             });
 
         }, function(error) {
@@ -173,6 +173,7 @@
                                             <input class="form-control" type="text" name="" ng-model="sticker.image">
                                             <input class="form-control" type="text" name="" ng-model="sticker.name">
                                             <input class="form-control" type="text" name="" ng-model="sticker.codigo">
+                                            <!-- <span class="label label-info">#{{sticker.codigo}}</span> -->
                                         </div>
                                     </div>
                                 </div>
