@@ -166,10 +166,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-{{medida}}" dir-paginate="sticker in stickers | filter: search | itemsPerPage: pageSize">
-                                    <div class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" >
+                                    <div class="thumbnail" style="border: 1px solid #ed1616;" ng-mouseover="hover = true" ng-mouseleave="hover = false" >
                                         <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar" ng-click="removeStiker(sticker)">
                                         <img src="{{sticker.image}}" ng-show="!hover" alt="{{sticker.name}}">
-                                        <div class="caption text-center">
+                                        <div class="caption text-center" style="padding: 2px;">
                                             <!-- <input class="form-control" type="text" name="" ng-model="sticker.image">
                                             <input class="form-control" type="text" name="" ng-model="sticker.name">
                                             <input class="form-control" type="text" name="" ng-model="sticker.codigo"> -->
