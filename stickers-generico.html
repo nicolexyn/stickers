@@ -122,7 +122,6 @@
                 $scope.stickers = data;
 
             }, function(error) {
-                console.log('error', error);
                 $scope.showLoading = false;
                 $scope.showError = true;
             });
@@ -131,11 +130,10 @@
 
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time=" + new Date().getTime()).then(function(data) {
             $scope.showLoading = false;
-            $scope.navs = data;
+            $scope.navs = data.data;
             $scope.changeNav($scope.navs[0]);
 
         }, function(error) {
-            console.log('error', error);
             $scope.showLoading = false;
             $scope.showError = true;
         });
