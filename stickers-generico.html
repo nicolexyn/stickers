@@ -40,7 +40,7 @@
         content: " ";
         width: 100%;
         height: 5px;
-        background-color: #ed1616;
+        background-color: #337ab7;
         z-order: 0;
     }
     
@@ -59,28 +59,28 @@
         font-weight: bold;
         line-height: 1.428571429;
         border-radius: 100px;
-        border-color: #ed1616;
-        background-color: #ed1616;
+        border-color: #337ab7;
+        background-color: #337ab7;
     }
     
     .panel-primary>.panel-heading {
         color: #fff;
-        background-color: #ed1616;
-        border-color: #ed1616;
+        background-color: #337ab7;
+        border-color: #337ab7;
     }
     
     .panel-primary {
-        border-color: #ed1616;
+        border-color: #337ab7;
     }
     
     .btn-primary {
         color: #fff;
-        background-color: #ed1616;
-        border-color: #ed1616;
+        background-color: #337ab7;
+        border-color: #337ab7;
     }
     
     .label-primary {
-        background-color: #ed1616;
+        background-color: #337ab7;
     }
     
     .nav-tabs>li.active>a,
@@ -88,7 +88,7 @@
     .nav-tabs>li.active>a:hover {
         color: #fff;
         cursor: pointer;
-        background-color: #ed1616;
+        background-color: #337ab7;
     }
     </style>
     <script type="text/javascript">
@@ -98,7 +98,7 @@
         $scope.pedido = [];
         $scope.tamanio = "5x5";
         $scope.hover = false;
-        $scope.medida = 2;
+        $scope.medida = 3;
         $scope.currentPage = 1;
         $scope.pageSize = 12;
         $scope.showError = false;
@@ -200,24 +200,24 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading"><strong>Catalogo de stickers</strong></div>
                             <div class="panel-body" style="min-height: 630px;">
-                                <div class="row" style="margin-bottom: 20px;">
+                                <div class="row">
                                     <div class="col-md-12" style="margin-left: 0px; margin-right: 0px;">
                                         <ul class="nav nav-tabs">
                                             <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''"><a href="" ng-click="changeNav(nav)">{{nav.name}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!--  <div class="row">
                                     <div class="col-md-12">
-                                        <!-- <div class="col-md-7" style="padding-bottom: 20px;"> -->
-                                        <!-- <div class="input-group">
-                                        <span class="input-group-addon label-primary" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
-                                        <input type="text" ng-model="search" class="form-control" placeholder="Ingresar texto a buscar..." aria-describedby="sizing-addon1">
-                                        <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
-                          </span>
-                                    </div>
-                                </div> -->
+                                        <div class="col-md-7" style="padding-bottom: 20px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon label-primary" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
+                                                <input type="text" ng-model="search" class="form-control" placeholder="Ingresar texto a buscar..." aria-describedby="sizing-addon1">
+                                                <span class="input-group-btn">
+                                                <button class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
+                                              </span>
+                                            </div>
+                                        </div>
                                         <div class="col-md-4" style="padding-bottom: 20px;">
                                             <div class="btn-group" role="group" aria-label="...">
                                                 <button type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 2">Achicar <i class="glyphicon glyphicon-zoom-out"></i></button>
@@ -231,6 +231,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div> -->
+                                <div class="row" ng-show="!showLoadingNav">
+                                    <div class="col-md-12 text-center">
+                                        <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                    </div>
                                 </div>
                                 <div class="row" ng-show="showLoadingNav">
                                     <div class="col-md-12 text-center">
@@ -239,10 +244,10 @@
                                 </div>
                                 <div ng-show="!showLoadingNav" class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
                                     <div class="thumbnail">
-                                        <img src="{{sticker.image}}" alt="{{sticker.name}}">
+                                        <img style="height: 165px;" src="{{sticker.image}}" alt="{{sticker.name}}">
                                         <div class="caption text-center">
-                                            <h5 style="margin-top: 0px;"><strong>{{sticker.name}}</strong></h5>
-                                            <button type="button" class="btn btn-primary btn-sm btn-block" ng-disabled="pedido.length == 15" ng-click="addStiker(sticker)">Agregar</strong>
+                                            <!-- <h5 style="margin-top: 0px;"><strong>{{sticker.name}}</strong></h5> -->
+                                            <button type="button" class="btn btn-success btn-sm btn-block" ng-disabled="pedido.length == 15" ng-click="addStiker(sticker)">Agregar</strong>
                                             </button>
                                         </div>
                                     </div>
