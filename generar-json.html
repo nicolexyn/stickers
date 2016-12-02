@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Introduccion</title>
+    <title>Generar JSON</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -90,10 +90,13 @@
         $scope.data = [];
         $scope.desde = 0;
         $scope.hasta = 100;
-        $scope.generar = function(){
+        $scope.generar = function() {
             $scope.data = [];
             for (var i = $scope.desde; i < $scope.hasta; i++) {
-                $scope.data.push({"name": "" + $scope.name + (('0' + i).slice(-2)) + "", "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-"+ $scope.name +"/" + $scope.name + (('0' + i).slice(-2)) +  "." + $scope.tipoImagen});
+                $scope.data.push({
+                    "name": "" + $scope.name + (('0' + i).slice(-2)) + "",
+                    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-" + $scope.name + "/" + $scope.name + (('0' + i).slice(-2)) + "." + $scope.tipoImagen
+                });
             }
         };
         $scope.copyToClipboard1 = function() {
@@ -120,11 +123,11 @@
                     <label>Nombre</label>
                     <input type="text" ng-model="name" class="form-control">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                     <label>Desde</label>
                     <input type="number" ng-model="desde" class="form-control">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                     <label>Hasta</label>
                     <input type="number" ng-model="hasta" class="form-control">
                 </div>
@@ -132,13 +135,13 @@
                     <label>Tipo Imagen</label>
                     <input type="text" ng-model="tipoImagen" class="form-control">
                 </div>
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-success btn-lg btn-block" ng-click="generar()">
+                <div class="col-md-4" style="    padding-top: 25px;">
+                    <button type="button" class="btn btn-success" ng-click="generar()">
                         <strong>Generar JSON!</strong>
                     </button>
                 </div>
-                <div class="col-md-12">
-                <div class="well">{{data}}</div>
+                <div class="col-md-12" style="padding-top: 20px;">
+                    <div class="well">{{data}}</div>
                 </div>
                 <div class="col-md-12">
                     <button type="button" class="btn btn-success btn-lg btn-block" ng-click="copyToClipboard1()">
