@@ -94,8 +94,9 @@
             $scope.data = [];
             for (var i = $scope.desde; i < $scope.hasta; i++) {
                 $scope.data.push({
-                    "name": "" + $scope.name + (('0' + i).slice(-2)) + "",
-                    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-" + $scope.name + "/" + $scope.name + (('0' + i).slice(-2)) + "." + $scope.tipoImagen
+                    "name": "" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "",
+                    "codigo": "" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "",
+                    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-" + $scope.name + "/" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "." + $scope.tipoImagen
                 });
             }
         };

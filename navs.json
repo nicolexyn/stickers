@@ -6,6 +6,13 @@
     "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/stickers-developer.json"
 },
 {
+    "name": "Pkemons",
+    "active": true,
+    "search": true,
+    "lengthStickers": 152,
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-pokemons/stickers-pokemons.json"
+},
+{
     "name": "Dragon Ball",
     "active": true,
     "search": false,
