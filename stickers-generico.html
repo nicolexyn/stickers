@@ -98,9 +98,10 @@
         $scope.pedido = [];
         $scope.tamanio = "5x5";
         $scope.hover = false;
+        $scope.showSearch = false;
         $scope.medida = 3;
         $scope.currentPage = 1;
-        $scope.pageSize = 12;
+        $scope.pageSize = 20;
         $scope.showError = false;
         $scope.showLoading = true;
 
@@ -114,10 +115,13 @@
         };
 
         $scope.changeNav = function(nav) {
+            console.log(nav);
+            $scope.showSearch = nav.search;
             $scope.setActiveNav(nav);
             $scope.stickers = [];
             $scope.showLoadingNav = true;
             $http.get(nav.url + "?time=" + new Date().getTime()).then(function(data) {
+                console.log('data', data);
                 $scope.showLoadingNav = false;
                 $scope.stickers = data;
 
@@ -203,11 +207,11 @@
                                 <div class="row">
                                     <div class="col-md-12" style="margin-left: 0px; margin-right: 0px;">
                                         <ul class="nav nav-tabs">
-                                            <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''"><a href="" ng-click="changeNav(nav)">{{nav.name}}</a></li>
+                                            <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''"><a href="" ng-click="changeNav(nav)">{{nav.name}} <span class="badge">{{nav.lengthStickers}}</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!--  <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-7" style="padding-bottom: 20px;">
                                             <div class="input-group">
@@ -217,24 +221,35 @@
                                                 <button class="btn btn-danger" type="button" ng-click="search = ''"><i class="glyphicon glyphicon-remove"></i></button>
                                               </span>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4" style="padding-bottom: 20px;">
+                                        </div> -->
+                                <!-- <div class="col-md-4" style="padding-bottom: 20px;">
                                             <div class="btn-group" role="group" aria-label="...">
                                                 <button type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 2">Achicar <i class="glyphicon glyphicon-zoom-out"></i></button>
                                                 <button type="button" class="btn btn-primary" ng-click="medida = medida + 1;" ng-disabled="medida == 12">Agrandar <i class="glyphicon glyphicon-zoom-in"></i></button>
                                             </div>
-                                        </div>
-                                        <div class="col-md-3" style="padding-bottom: 20px; padding-left: 0;">
+                                        </div> -->
+                                <!-- <div class="col-md-3" style="padding-bottom: 20px; padding-left: 0;">
                                             <div class="input-group">
                                                 <span class="input-group-addon label-primary" style="color: white;">Items por pagina</span>
                                                 <input type="number" class="form-control" min="0" max="20" name="" ng-model="pageSize">
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                <!--  </div>
                                 </div> -->
                                 <div class="row" ng-show="!showLoadingNav">
-                                    <div class="col-md-12 text-center">
+                                    <div class="col-md-12 text-center" style="margin-bottom: -20px;">
                                         <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                    </div>
+                                    <div class="col-md-12 text-center" ng-show="showSearch">
+                                        <div class="col-md-12" style="padding-top: 20px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon label-info" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
+                                                <input type="text" ng-model="search" class="form-control" placeholder="Buscar sticker..." aria-describedby="sizing-addon1">
+                                                <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" ng-click="search = ''" style="padding: 9px;"><i class="glyphicon glyphicon-remove"></i></button>
+                                              </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row" ng-show="showLoadingNav">
@@ -242,7 +257,7 @@
                                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                                     </div>
                                 </div>
-                                <div ng-show="!showLoadingNav" class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize">
+                                <div ng-show="!showLoadingNav" class="col-md-{{medida}}" dir-paginate="sticker in stickers.data | filter: search | itemsPerPage: pageSize" style="padding-top: 20px;">
                                     <div class="thumbnail">
                                         <img style="height: 165px;" src="{{sticker.image}}" alt="{{sticker.name}}">
                                         <div class="caption text-center">
