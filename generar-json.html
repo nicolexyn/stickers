@@ -84,7 +84,7 @@
     }
     </style>
     <script type="text/javascript">
-    //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
+    //https://www.dropbox.com/s/s1dbb9ksnz45m3r/programmer.json
     var app = angular.module("Stickers", ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
     app.controller("StickersController", function($scope, $http, $uibModal) {
         $scope.data = [];
@@ -96,7 +96,7 @@
                 $scope.data.push({
                     "name": "" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "",
                     "codigo": "" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "",
-                    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-" + $scope.name + "/" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "." + $scope.tipoImagen
+                    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/" + $scope.name + "/" + $scope.name + (i < 10 ? ('0' + i).slice(-2) : i) + "." + $scope.tipoImagen
                 });
             }
         };

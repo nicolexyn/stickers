@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="row" ng-show="showLoading">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center" style="padding-top: 20px">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                     </div>
                 </div>
@@ -207,17 +207,11 @@
                                 <div class="row">
                                     <div class="col-md-12" style="margin-left: 0px; margin-right: 0px;">
                                         <ul class="nav nav-tabs">
-                                            <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''"><a href="" ng-click="changeNav(nav)">{{nav.name}} <span class="badge">{{nav.lengthStickers}}</span></a></li>
+                                            <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''">
+                                                <a href="" ng-click="changeNav(nav)">
+                                                    <div class="thumbnail" style="margin-bottom: 5px;"><img src="{{nav.image}}" style="height: 50px"></div> {{nav.name}} <span class="badge">{{nav.lengthStickers}}</span></a>
+                                            </li>
                                         </ul>
-                                        <div class="form-group">
-                                            <label>Stickers</label>
-                                            <select class="form-control" ng-model="placement.selected">
-                                                <option ng-repeat="nav in navs">
-                                                    <div class="thumbnail">
-                                                        <img style="height: 30px;" src="{{nav.image}}" alt="{{nav.image}}">
-                                                    </div>{{nav.name}}</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="row">
@@ -262,7 +256,7 @@
                                     </div>
                                 </div>
                                 <div class="row" ng-show="showLoadingNav">
-                                    <div class="col-md-12 text-center">
+                                    <div class="col-md-12 text-center" style="padding-top: 20px">
                                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                                     </div>
                                 </div>
