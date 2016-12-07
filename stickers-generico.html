@@ -115,7 +115,7 @@
         };
 
         $scope.changeNav = function(nav) {
-            console.log(nav);
+            $scope.search = '';
             $scope.showSearch = nav.search;
             $scope.setActiveNav(nav);
             $scope.stickers = [];
@@ -209,6 +209,15 @@
                                         <ul class="nav nav-tabs">
                                             <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''"><a href="" ng-click="changeNav(nav)">{{nav.name}} <span class="badge">{{nav.lengthStickers}}</span></a></li>
                                         </ul>
+                                        <div class="form-group">
+                                            <label>Stickers</label>
+                                            <select class="form-control" ng-model="placement.selected">
+                                                <option ng-repeat="nav in navs">
+                                                    <div class="thumbnail">
+                                                        <img style="height: 30px;" src="{{nav.image}}" alt="{{nav.image}}">
+                                                    </div>{{nav.name}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="row">
@@ -244,9 +253,9 @@
                                         <div class="col-md-12" style="padding-top: 20px;">
                                             <div class="input-group">
                                                 <span class="input-group-addon label-info" style="color: white;" id="sizing-addon1"><i class="glyphicon glyphicon-search"></i> Buscar</span>
-                                                <input type="text" ng-model="search" class="form-control" placeholder="Buscar sticker..." aria-describedby="sizing-addon1">
+                                                <input type="text" ng-model="search" class="form-control" placeholder="Buscar sticker..." aria-describedby="sizing-addon1" style="min-height: 38px;">
                                                 <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="button" ng-click="search = ''" style="padding: 9px;"><i class="glyphicon glyphicon-remove"></i></button>
+                                                <button class="btn btn-primary" type="button" ng-click="search = ''" style="min-height: 38px;"><i class="glyphicon glyphicon-remove"></i></button>
                                               </span>
                                             </div>
                                         </div>
@@ -280,8 +289,8 @@
                                 <div class="col-md-12">
                                     <div class="col-xs-4" ng-repeat="item in pedido track by $index">
                                         <a href="" class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="removeStiker(item)">
-                                            <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar">
-                                            <img src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
+                                            <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar" style="height: 70px;">
+                                            <img style="height: 70px;" src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
                                         </a>
                                     </div>
                                     <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="pedido.length < 15" ng-click="copyToClipboard1()">

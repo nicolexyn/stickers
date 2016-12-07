@@ -3,35 +3,40 @@
     "active": true,
     "search": true,
     "lengthStickers": 443,
-    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-developer/stickers-developer.json"
+    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/developer/developer03.jpg",
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/developer/developer.json"
 },
 {
     "name": "Pokemons",
     "active": true,
     "search": true,
     "lengthStickers": 152,
-    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-pokemons/stickers-pokemons.json"
+    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemons/pokemons104.jpg",
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemons/pokemons.json"
 },
 {
     "name": "Dragon Ball",
     "active": true,
     "search": false,
     "lengthStickers": 75,
-    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-dragonball/stickers-dragonball.json"
+    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/dragonball/dragon_ball10.png",
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/dragonball/dragonball.json"
 },
 {
     "name": "Mario Bross",
     "active": true,
     "search": false,
     "lengthStickers": 10,
-    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-mario/stickers-mario.json"
+    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario00.jpg",
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario.json"
 },
 {
     "name": "Memes",
     "active": true,
     "search": false,
     "lengthStickers": 76,
-    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/stickers-meme/stickers-meme.json"
+    "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme05.png",
+    "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme.json"
 }]
 
 
