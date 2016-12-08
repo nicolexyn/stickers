@@ -2,16 +2,32 @@
 
 <head>
     <title>Stickers Generico 5x5</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/nicolexyn/stickers/master/style.css">
     <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/libs.js"></script>
     <style type="text/css">
     .dropdown-header {
-        font-size: 18px;
+        font-size: 22px;
         font-weight: bold;
+        padding-left: 50px;
+        color: #337ab7;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .modal-open .modal {
+        overflow-x: hidden;
+        z-index: 999999!important;
+        margin-top: 80px;
     }
     </style>
     <script type="text/javascript">
+
+        TAMANIO = "5x5";
+        CANTIDAD = 15;
+        MEDIDA = 4;
+
+        var app=angular.module("Stickers",["angularUtils.directives.dirPagination","ui.bootstrap","ngSanitize","ui.select"]);app.controller("StickersController",["$scope","$http","$uibModal",function(a,b,c){a.pedido=[],a.tamanio=TAMANIO,a.hover=!1,a.showSearch=!1,a.cantidad=CANTIDAD,a.medida=MEDIDA,a.currentPage=1,a.pageSize=20,a.showError=!1,a.showLoading=!0,a.navs=[],a.setActiveNav=function(b){angular.forEach(a.navs,function(a){a.active=!1}),b.active=!0},a.changeNav2=function(){var c=a.person.selected;a.search="",a.showSearch=c.search,a.setActiveNav(c),a.stickers=[],a.showLoadingNav=!0,b.get(c.url).then(function(b){a.showLoadingNav=!1,a.stickers=b},function(b){a.showLoading=!1,a.showError=!0})},a.person={},b.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time="+(new Date).getTime()).then(function(b){a.showLoading=!1,a.navs=b.data,a.person.selected=a.navs[0],a.changeNav2()},function(b){a.showLoading=!1,a.showError=!0}),a.addStiker=function(b){a.pedido.push(b)},a.removeStiker=function(b){a.pedido.splice(a.pedido.indexOf(b),1)},a.copyToClipboard1=function(){var b=[];angular.forEach(a.pedido,function(c){b.push(c.codigo+"-"+a.tamanio)}),copyToClipboard(JSON.stringify(b.join(",")));c.open({animation:!0,ariaLabelledBy:"modal-title",ariaDescribedBy:"modal-body",templateUrl:"modal.html",controller:"ModalInstanceCtrl",controllerAs:"$ctrl"})}}]),app.controller("ModalInstanceCtrl",["$uibModalInstance",function(a){var b=this;b.cancel=function(){a.dismiss("cancel")}}]);var copyToClipboard=function(a){var b=$("<input>");$("body").append(b),b.val(a).select(),document.execCommand("copy"),b.remove()};
     
     </script>
 </head>
@@ -46,13 +62,20 @@
                                                 <ui-select ng-model="person.selected" ng-change="changeNav2()" theme="bootstrap">
                                                     <ui-select-match placeholder="Selecciona un set de Sticker del catalogo...">{{$select.selected.name}}</ui-select-match>
                                                     <ui-select-choices group-by="'category'" repeat="nav in navs | filter: $select.search">
-                                                        <div class="thumbnail" style="margin-bottom: 5px;padding: 5px;float: left;"><img src="{{nav.image}}" style="height: 50px;width: 50px;"></div>
-                                                        <div style="line-height: 65px;margin-left: 75px;font-weight: bold;" ng-bind-html="nav.name | highlight: $select.search"></div>
+                                                        <div class="" style="margin-bottom: 5px;padding: 5px;float: left;"><img src="{{nav.image}}" style="height: 85px;margin: 0px;"></div>
+                                                        <div style="line-height: 95px;margin-left: 105px;font-weight: bold;" ng-bind-html="nav.name | highlight: $select.search"></div>
                                                     </ui-select-choices>
                                                 </ui-select>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- <div class="col-md-4" style="padding-top: 28px;">
+                                        <div class="btn-group" role="group" style="float: right;" aria-label="...">
+                                            <button type="button" class="btn btn-primary" ng-click="medida = medida - 1;" ng-disabled="medida == 2">Achicar <i class="glyphicon glyphicon-zoom-out"></i></button>
+                                            <button type="button" class="btn btn-primary" ng-click="medida = medida + 1;" ng-disabled="medida == 12">Agrandar <i class="glyphicon glyphicon-zoom-in"></i></button>
+                                        </div>
+                                    </div> -->
+
                                 </div>
                                 <!-- <div class="row">
                                     <div class="col-md-12">
@@ -105,7 +128,7 @@
                                         <img style="max-height: 165px;" src="{{sticker.image}}" alt="{{sticker.name}}">
                                         <div class="caption text-center">
                                             <!-- <h5 style="margin-top: 0px;"><strong>{{sticker.name}}</strong></h5> -->
-                                            <button type="button" class="btn btn-success btn-sm btn-block" ng-disabled="pedido.length == 15" ng-click="addStiker(sticker)">Agregar</strong>
+                                            <button type="button" class="btn btn-success btn-sm btn-block" ng-disabled="pedido.length == cantidad" ng-click="addStiker(sticker)">Agregar</strong>
                                             </button>
                                         </div>
                                     </div>
@@ -127,9 +150,9 @@
                                             <img style="height: 70px;" src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
                                         </a>
                                     </div>
-                                    <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="pedido.length < 15" ng-click="copyToClipboard1()">
-                                        <strong ng-show="pedido.length == 0">Paso 1 - Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < 15">Te quedan {{15 - pedido.length}} Stickers!</strong>
-                                        <strong ng-show="pedido.length == 15">Paso 2 - <i class="glyphicon glyphicon-copy"></i> Copiar Listado!</strong>
+                                    <button type="button" class="btn btn-success btn-lg btn-block" ng-disabled="pedido.length < cantidad" ng-click="copyToClipboard1()">
+                                        <strong ng-show="pedido.length == 0">Paso 1 - Agrega Stickers!</strong><strong ng-show="pedido.length > 0 && pedido.length < cantidad">Te quedan {{cantidad - pedido.length}} Stickers!</strong>
+                                        <strong ng-show="pedido.length == cantidad">Paso 2 - <i class="glyphicon glyphicon-copy"></i> Copiar Listado!</strong>
                                     </button>
                                 </div>
                             </div>
