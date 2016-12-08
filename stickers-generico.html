@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/nicolexyn/stickers/master/style.css">
 
     <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/libs.js"></script>
+    <script type="text/javascript">
+    var app=angular.module("Stickers",["angularUtils.directives.dirPagination","ui.bootstrap","ngSanitize","ui.select"]);app.controller("StickersController",["$scope","$http","$uibModal",function(a,b,c){a.pedido=[],a.tamanio="5x5",a.hover=!1,a.showSearch=!1,a.medida=3,a.currentPage=1,a.pageSize=20,a.showError=!1,a.showLoading=!0,a.navs=[],a.setActiveNav=function(b){angular.forEach(a.navs,function(a){a.active=!1}),b.active=!0},a.changeNav2=function(){console.log(a.person.selected);var c=a.person.selected;a.search="",a.showSearch=c.search,a.setActiveNav(c),a.stickers=[],a.showLoadingNav=!0,b.get(c.url+"?time="+(new Date).getTime()).then(function(b){console.log("data",b),a.showLoadingNav=!1,a.stickers=b},function(b){a.showLoading=!1,a.showError=!0})},a.person={},b.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time="+(new Date).getTime()).then(function(b){a.showLoading=!1,a.navs=b.data,a.person.selected=a.navs[0],a.changeNav2()},function(b){a.showLoading=!1,a.showError=!0}),a.addStiker=function(b){a.pedido.push(b)},a.removeStiker=function(b){a.pedido.splice(a.pedido.indexOf(b),1)},a.copyToClipboard1=function(){var b=[];angular.forEach(a.pedido,function(c){b.push(c.codigo+"-"+a.tamanio)}),copyToClipboard(JSON.stringify(b.join(",")));c.open({animation:!0,ariaLabelledBy:"modal-title",ariaDescribedBy:"modal-body",templateUrl:"modal.html",controller:"ModalInstanceCtrl",controllerAs:"$ctrl"})}}]),app.controller("ModalInstanceCtrl",function(a){var b=this;b.cancel=function(){a.dismiss("cancel")}});var copyToClipboard=function(a){var b=$("<input>");$("body").append(b),b.val(a).select(),document.execCommand("copy"),b.remove()};
+    </script>
 </head>
 
 <body ng-app="Stickers">
