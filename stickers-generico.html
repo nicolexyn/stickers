@@ -23,11 +23,11 @@
     </style>
     <script type="text/javascript">
 
-        TAMANIO = "5x5";
-        CANTIDAD = 15;
+        TAMANIO = "9x9";
+        CANTIDAD = 4;
         MEDIDA = 4;
 
-        var app=angular.module("Stickers",["angularUtils.directives.dirPagination","ui.bootstrap","ngSanitize","ui.select"]);app.controller("StickersController",["$scope","$http","$uibModal",function(a,b,c){a.pedido=[],a.tamanio=TAMANIO,a.hover=!1,a.showSearch=!1,a.cantidad=CANTIDAD,a.medida=MEDIDA,a.currentPage=1,a.pageSize=20,a.showError=!1,a.showLoading=!0,a.navs=[],a.setActiveNav=function(b){angular.forEach(a.navs,function(a){a.active=!1}),b.active=!0},a.changeNav2=function(){var c=a.person.selected;a.search="",a.showSearch=c.search,a.setActiveNav(c),a.stickers=[],a.showLoadingNav=!0,b.get(c.url).then(function(b){a.showLoadingNav=!1,a.stickers=b},function(b){a.showLoading=!1,a.showError=!0})},a.person={},b.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time="+(new Date).getTime()).then(function(b){a.showLoading=!1,a.navs=b.data,a.person.selected=a.navs[0],a.changeNav2()},function(b){a.showLoading=!1,a.showError=!0}),a.addStiker=function(b){a.pedido.push(b)},a.removeStiker=function(b){a.pedido.splice(a.pedido.indexOf(b),1)},a.copyToClipboard1=function(){var b=[];angular.forEach(a.pedido,function(c){b.push(c.codigo+"-"+a.tamanio)}),copyToClipboard(JSON.stringify(b.join(",")));c.open({animation:!0,ariaLabelledBy:"modal-title",ariaDescribedBy:"modal-body",templateUrl:"modal.html",controller:"ModalInstanceCtrl",controllerAs:"$ctrl"})}}]),app.controller("ModalInstanceCtrl",["$uibModalInstance",function(a){var b=this;b.cancel=function(){a.dismiss("cancel")}}]);var copyToClipboard=function(a){var b=$("<input>");$("body").append(b),b.val(a).select(),document.execCommand("copy"),b.remove()};
+        var app=angular.module("Stickers",["angularUtils.directives.dirPagination","ui.bootstrap","ngSanitize","ui.select"]);app.controller("StickersController",["$scope","$http","$uibModal",function(a,b,c){a.pedido=[],a.tamanio=TAMANIO,a.hover=!1,a.showSearch=!1,a.cantidad=CANTIDAD,a.medida=MEDIDA,a.currentPage=1,a.pageSize=21,a.showError=!1,a.showLoading=!0,a.navs=[],a.setActiveNav=function(b){angular.forEach(a.navs,function(a){a.active=!1}),b.active=!0},a.changeNav2=function(){a.currentPage=1;var c=a.person.selected;a.search="",a.showSearch=c.search,a.setActiveNav(c),a.stickers=[],a.showLoadingNav=!0,b.get(c.url).then(function(b){a.showLoadingNav=!1,a.stickers=b,a.currentPage=1},function(b){a.showLoading=!1,a.showError=!0})},a.person={},b.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time="+(new Date).getTime()).then(function(b){a.showLoading=!1,a.navs=b.data,a.person.selected=a.navs[0],a.changeNav2()},function(b){a.showLoading=!1,a.showError=!0}),a.addStiker=function(b){a.pedido.push(b)},a.removeStiker=function(b){a.pedido.splice(a.pedido.indexOf(b),1)},a.copyToClipboard1=function(){var b=[];angular.forEach(a.pedido,function(c){b.push(c.codigo+"-"+a.tamanio)}),copyToClipboard(JSON.stringify(b.join(",")));c.open({animation:!0,ariaLabelledBy:"modal-title",ariaDescribedBy:"modal-body",templateUrl:"modal.html",controller:"ModalInstanceCtrl",controllerAs:"$ctrl"})}}]),app.controller("ModalInstanceCtrl",["$uibModalInstance",function(a){var b=this;b.cancel=function(){a.dismiss("cancel")}}]);var copyToClipboard=function(a){var b=$("<input>");$("body").append(b),b.val(a).select(),document.execCommand("copy"),b.remove()};
     
     </script>
 </head>
@@ -144,7 +144,7 @@
                             <div class="panel-heading"><strong>Vista previa de tu plantilla</strong></div>
                             <div class="panel-body">
                                 <div class="col-md-12">
-                                    <div class="col-xs-4" ng-repeat="item in pedido track by $index">
+                                    <div class="col-xs-6" ng-repeat="item in pedido track by $index">
                                         <a href="" class="thumbnail" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="removeStiker(item)">
                                             <img src="https://github.com/nicolexyn/stickers/blob/master/eliminar.png?raw=true" ng-show="hover" alt="Eliminar" style="max-height: 70px;">
                                             <img style="height: 70px;" src="{{item.image}}" ng-show="!hover" alt="{{item.name}}">
