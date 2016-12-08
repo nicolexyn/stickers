@@ -2,12 +2,8 @@
 
 <head>
     <title>Stickers Generico 5x5</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-2.2.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/dirPagination.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="libs.js"></script>
     <style type="text/css">
     .sticker-admin th {
         background-color: #ed1616;
@@ -93,7 +89,7 @@
     </style>
     <script type="text/javascript">
     //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
-    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
+    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination', 'ui.bootstrap', 'ngSanitize', 'ui.select']);
     app.controller("StickersController", function($scope, $http, $uibModal) {
         $scope.pedido = [];
         $scope.tamanio = "5x5";
@@ -114,7 +110,9 @@
             nav.active = true;
         };
 
-        $scope.changeNav = function(nav) {
+        $scope.changeNav2 = function() {
+            console.log($scope.person.selected);
+            var nav = $scope.person.selected;
             $scope.search = '';
             $scope.showSearch = nav.search;
             $scope.setActiveNav(nav);
@@ -131,11 +129,15 @@
             });
         };
 
+        $scope.person = {};
+
 
         $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time=" + new Date().getTime()).then(function(data) {
             $scope.showLoading = false;
             $scope.navs = data.data;
-            $scope.changeNav($scope.navs[0]);
+            $scope.person.selected = $scope.navs[0];
+
+            $scope.changeNav2();
 
         }, function(error) {
             $scope.showLoading = false;
@@ -205,13 +207,19 @@
                             <div class="panel-heading"><strong>Catalogo de stickers</strong></div>
                             <div class="panel-body" style="min-height: 630px;">
                                 <div class="row">
-                                    <div class="col-md-12" style="margin-left: 0px; margin-right: 0px;">
-                                        <ul class="nav nav-tabs">
-                                            <li ng-repeat="nav in navs" ng-class="nav.active ? 'active' : ''">
-                                                <a href="" ng-click="changeNav(nav)">
-                                                    <div class="thumbnail" style="margin-bottom: 5px;"><img src="{{nav.image}}" style="height: 50px"></div> {{nav.name}} <span class="badge">{{nav.lengthStickers}}</span></a>
-                                            </li>
-                                        </ul>
+                                    <div class="col-md-12">
+                                        <div class="form-group" style="margin-bottom: 0px;">
+                                            <label class="control-label">Catalogo de Stickers</label>
+                                            <div class="">
+                                                <ui-select ng-model="person.selected" ng-change="changeNav2()" theme="bootstrap">
+                                                    <ui-select-match placeholder="Selecciona un set de Sticker del catalogo...">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="nav in navs | filter: $select.search">
+                                                        <div class="thumbnail" style="margin-bottom: 5px;padding: 5px;float: left;"><img src="{{nav.image}}" style="height: 50px;width: 50px;"></div>
+                                                        <div style="line-height: 65px;margin-left: 75px;font-weight: bold;" ng-bind-html="nav.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="row">
