@@ -7,7 +7,97 @@
 
     <script type="text/javascript" src="https://cdn.rawgit.com/nicolexyn/stickers/master/libs.js"></script>
     <script type="text/javascript">
-    var app=angular.module("Stickers",["angularUtils.directives.dirPagination","ui.bootstrap","ngSanitize","ui.select"]);app.controller("StickersController",["$scope","$http","$uibModal",function(a,b,c){a.pedido=[],a.tamanio="5x5",a.hover=!1,a.showSearch=!1,a.medida=3,a.currentPage=1,a.pageSize=20,a.showError=!1,a.showLoading=!0,a.navs=[],a.setActiveNav=function(b){angular.forEach(a.navs,function(a){a.active=!1}),b.active=!0},a.changeNav2=function(){console.log(a.person.selected);var c=a.person.selected;a.search="",a.showSearch=c.search,a.setActiveNav(c),a.stickers=[],a.showLoadingNav=!0,b.get(c.url+"?time="+(new Date).getTime()).then(function(b){console.log("data",b),a.showLoadingNav=!1,a.stickers=b},function(b){a.showLoading=!1,a.showError=!0})},a.person={},b.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time="+(new Date).getTime()).then(function(b){a.showLoading=!1,a.navs=b.data,a.person.selected=a.navs[0],a.changeNav2()},function(b){a.showLoading=!1,a.showError=!0}),a.addStiker=function(b){a.pedido.push(b)},a.removeStiker=function(b){a.pedido.splice(a.pedido.indexOf(b),1)},a.copyToClipboard1=function(){var b=[];angular.forEach(a.pedido,function(c){b.push(c.codigo+"-"+a.tamanio)}),copyToClipboard(JSON.stringify(b.join(",")));c.open({animation:!0,ariaLabelledBy:"modal-title",ariaDescribedBy:"modal-body",templateUrl:"modal.html",controller:"ModalInstanceCtrl",controllerAs:"$ctrl"})}}]),app.controller("ModalInstanceCtrl",function(a){var b=this;b.cancel=function(){a.dismiss("cancel")}});var copyToClipboard=function(a){var b=$("<input>");$("body").append(b),b.val(a).select(),document.execCommand("copy"),b.remove()};
+    //https://www.dropbox.com/s/s1dbb9ksnz45m3r/stickers-programmer.json
+    var app = angular.module("Stickers", ['angularUtils.directives.dirPagination', 'ui.bootstrap', 'ngSanitize', 'ui.select']);
+    app.controller("StickersController",['$scope', '$http', '$uibModal' function($scope, $http, $uibModal) {
+        $scope.pedido = [];
+        $scope.tamanio = "5x5";
+        $scope.hover = false;
+        $scope.showSearch = false;
+        $scope.medida = 3;
+        $scope.currentPage = 1;
+        $scope.pageSize = 20;
+        $scope.showError = false;
+        $scope.showLoading = true;
+
+        $scope.navs = [];
+
+        $scope.setActiveNav = function(nav) {
+            angular.forEach($scope.navs, function(item) {
+                item.active = false;
+            });
+            nav.active = true;
+        };
+
+        $scope.changeNav2 = function() {
+            var nav = $scope.person.selected;
+            $scope.search = '';
+            $scope.showSearch = nav.search;
+            $scope.setActiveNav(nav);
+            $scope.stickers = [];
+            $scope.showLoadingNav = true;
+            $http.get(nav.url + "?time=" + new Date().getTime()).then(function(data) {
+                $scope.showLoadingNav = false;
+                $scope.stickers = data;
+
+            }, function(error) {
+                $scope.showLoading = false;
+                $scope.showError = true;
+            });
+        };
+
+        $scope.person = {};
+
+
+        $http.get("https://raw.githubusercontent.com/nicolexyn/stickers/master/navs.json?time=" + new Date().getTime()).then(function(data) {
+            $scope.showLoading = false;
+            $scope.navs = data.data;
+            $scope.person.selected = $scope.navs[0];
+
+            $scope.changeNav2();
+
+        }, function(error) {
+            $scope.showLoading = false;
+            $scope.showError = true;
+        });
+        $scope.addStiker = function(sticker) {
+            $scope.pedido.push(sticker);
+        };
+        $scope.removeStiker = function(sticker) {
+            $scope.pedido.splice($scope.pedido.indexOf(sticker), 1);
+        };
+        $scope.copyToClipboard1 = function() {
+            var resultList = [];
+            angular.forEach($scope.pedido, function(item) {
+                resultList.push(item.codigo + '-' + $scope.tamanio);
+            });
+            copyToClipboard(JSON.stringify(resultList.join(',')));
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'modal.html',
+                controller: 'ModalInstanceCtrl',
+                controllerAs: '$ctrl'
+            });
+        };
+    }]);
+
+    app.controller('ModalInstanceCtrl', function($uibModalInstance) {
+        var $ctrl = this;
+
+        $ctrl.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
+        };
+    });
+
+    var copyToClipboard = function(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(element).select();
+        document.execCommand("copy");
+        $temp.remove();
+    };
     </script>
 </head>
 
@@ -36,7 +126,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group" style="margin-bottom: 0px;">
-                                            <label class="control-label">Catalogo de Stickers</label>
+                                            <h2 class="control-label">Catalogo de Stickers</h2>
                                             <div class="">
                                                 <ui-select ng-model="person.selected" ng-change="changeNav2()" theme="bootstrap">
                                                     <ui-select-match placeholder="Selecciona un set de Sticker del catalogo...">{{$select.selected.name}}</ui-select-match>
