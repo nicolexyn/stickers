@@ -86,7 +86,7 @@
         "name": "Face Palm",
         "active": true,
         "search": false,
-        "category": "Meme",
+        "category": "Memes",
         "lengthStickers": 21,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/facepalm/facepalm00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/facepalm/facepalm.json"
@@ -218,7 +218,7 @@
         "search": false,
         "category": "Juegos",
         "lengthStickers": 23,
-        "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario00.jpg",
+        "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario.json"
     }, {
         "name": "Mega Man",
@@ -234,7 +234,7 @@
         "name": "Memes",
         "active": true,
         "search": false,
-        "category": "Meme",
+        "category": "Memes",
         "lengthStickers": 76,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme05.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme.json"
@@ -242,7 +242,7 @@
         "name": "Memes 2",
         "active": true,
         "search": false,
-        "category": "Meme",
+        "category": "Memes",
         "lengthStickers": 120,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme2_/meme2_00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme2_/meme2.json"
