@@ -129,7 +129,7 @@
                                             <div class="">
                                                 <ui-select ng-model="person.selected" ng-change="changeNav2()" theme="bootstrap">
                                                     <ui-select-match placeholder="Selecciona un set de Sticker del catalogo...">{{$select.selected.name}}</ui-select-match>
-                                                    <ui-select-choices repeat="nav in navs | filter: $select.search">
+                                                    <ui-select-choices group-by="'category'" repeat="nav in navs | filter: $select.search">
                                                         <div class="thumbnail" style="margin-bottom: 5px;padding: 5px;float: left;"><img src="{{nav.image}}" style="height: 50px;width: 50px;"></div>
                                                         <div style="line-height: 65px;margin-left: 75px;font-weight: bold;" ng-bind-html="nav.name | highlight: $select.search"></div>
                                                     </ui-select-choices>
