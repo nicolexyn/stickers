@@ -2,6 +2,7 @@
         "name": "Adventure Time",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 27,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/adventuretime/adventuretime00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/adventuretime/adventuretime.json"
@@ -9,6 +10,7 @@
         "name": "Angry Birds",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 33,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/angrybirds/angrybirds00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/angrybirds/angrybirds.json"
@@ -16,6 +18,7 @@
         "name": "Barcelona",
         "active": true,
         "search": false,
+        "category": "Futbol",
         "lengthStickers": 32,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/barcelona/barcelona00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/barcelona/barcelona.json"
@@ -23,6 +26,7 @@
         "name": "Batman",
         "active": true,
         "search": false,
+        "category": "Anime",
         "lengthStickers": 51,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/batman/batman00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/batman/batman.json"
@@ -30,6 +34,7 @@
         "name": "Bob Sponja",
         "active": true,
         "search": false,
+        "category": "Diujos",
         "lengthStickers": 23,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/bobsponja/bobsponja00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/bobsponja/bobsponja.json"
@@ -37,6 +42,7 @@
         "name": "Breaking Bad",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 66,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/breakingbad/breakingbad00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/breakingbad/breakingbad.json"
@@ -44,6 +50,7 @@
         "name": "Deadpool",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 16,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/deadpool/deadpool00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/deadpool/deadpool.json"
@@ -53,6 +60,7 @@
         "name": "Developer",
         "active": true,
         "search": true,
+        "category": "Nerd",
         "lengthStickers": 443,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/developer/developer03.jpg",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/developer/developer.json"
@@ -62,6 +70,7 @@
         "name": "Dragon Ball",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 75,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/dragonball/dragon_ball10.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/dragonball/dragonball.json"
@@ -69,6 +78,7 @@
         "name": "Earth Worm Jim",
         "active": true,
         "search": false,
+        "category": "Juegos",
         "lengthStickers": 11,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/earthwormjim/earthwormjim00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/earthwormjim/earthwormjim.json"
@@ -76,6 +86,7 @@
         "name": "Face Palm",
         "active": true,
         "search": false,
+        "category": "Meme",
         "lengthStickers": 21,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/facepalm/facepalm00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/facepalm/facepalm.json"
@@ -83,6 +94,7 @@
         "name": "Family Guy",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 28,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/familyguy/familyguy00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/familyguy/familyguy.json"
@@ -90,6 +102,7 @@
         "name": "Futbol Argentino",
         "active": true,
         "search": false,
+        "category": "Futbol",
         "lengthStickers": 33,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/futbolargentino/futbolargentino00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/futbolargentino/futbolargentino.json"
@@ -97,6 +110,7 @@
         "name": "Futurama",
         "active": true,
         "search": false,
+        "category": "Diujos",
         "lengthStickers": 53,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/futurama/futurama00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/futurama/futurama.json"
@@ -104,6 +118,7 @@
         "name": "Garfield",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 16,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/garfield/garfield00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/garfield/garfield.json"
@@ -111,6 +126,7 @@
         "name": "Game of Thrones",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 89,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/got/got00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/got/got.json"
@@ -118,6 +134,7 @@
         "name": "Hamsa",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 25,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/hamsa/hamsa00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/hamsa/hamsa.json"
@@ -125,6 +142,7 @@
         "name": "Harry Potter",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 29,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/harrypotter/harrypotter00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/harrypotter/harrypotter.json"
@@ -132,6 +150,7 @@
         "name": "Judy Hopps",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 42,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/judyhopps/judyhopps00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/judyhopps/judyhopps.json"
@@ -139,6 +158,7 @@
         "name": "Kungfu Panda",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 21,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/kungfupanda/kungfupanda00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/kungfupanda/kungfupanda.json"
@@ -146,6 +166,7 @@
         "name": "La Era Del Hielo",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 24,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/laeradelhielo/laeradelhielo00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/laeradelhielo/laeradelhielo.json"
@@ -153,6 +174,7 @@
         "name": "Lego",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 38,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/lego/lego00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/lego/lego.json"
@@ -160,6 +182,7 @@
         "name": "Logos de Autos",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 37,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/logoautos/logoautos00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/logoautos/logoautos.json"
@@ -168,12 +191,14 @@
         "active": true,
         "search": false,
         "lengthStickers": 27,
+        "category": "Peliculas",
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/madagascar/madagascar00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/madagascar/madagascar.json"
     }, {
         "name": "Mandalas",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 22,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mandalas/mandalas00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mandalas/mandalas.json"
@@ -181,6 +206,7 @@
         "name": "Logos de Ropa",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 28,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/marcaropa/marcaropa00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/marcaropa/marcaropa.json"
@@ -190,6 +216,7 @@
         "name": "Mario Bross",
         "active": true,
         "search": false,
+        "category": "Juegos",
         "lengthStickers": 23,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario00.jpg",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mario/mario.json"
@@ -197,6 +224,7 @@
         "name": "Mega Man",
         "active": true,
         "search": false,
+        "category": "Juegos",
         "lengthStickers": 20,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/megaman/megaman00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/megaman/megaman.json"
@@ -206,6 +234,7 @@
         "name": "Memes",
         "active": true,
         "search": false,
+        "category": "Meme",
         "lengthStickers": 76,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme05.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme/meme.json"
@@ -213,6 +242,7 @@
         "name": "Memes 2",
         "active": true,
         "search": false,
+        "category": "Meme",
         "lengthStickers": 120,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme2_/meme2_00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/meme2_/meme2.json"
@@ -220,6 +250,7 @@
         "name": "Mickey",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 78,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mickymouse/mickymouse00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mickymouse/mickymouse.json"
@@ -227,6 +258,7 @@
         "name": "Minions",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 46,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/minions/minions00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/minions/minions.json"
@@ -234,6 +266,7 @@
         "name": "Monsters Inc",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 35,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/monstersinc/monstersinc00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/monstersinc/monstersinc.json"
@@ -241,6 +274,7 @@
         "name": "Mr. Bean",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 19,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mrbean/mrbean00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/mrbean/mrbean.json"
@@ -248,6 +282,7 @@
         "name": "Pacman",
         "active": true,
         "search": false,
+        "category": "Juegos",
         "lengthStickers": 28,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pacman/pacman00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pacman/pacman.json"
@@ -255,6 +290,7 @@
         "name": "El Papa Francisco",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 15,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/papafrancisco/papafrancisco00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/papafrancisco/papafrancisco.json"
@@ -262,6 +298,7 @@
         "name": "Pincky y Cerebro",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 14,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pinckyycerebro/pinckyycerebro00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pinckyycerebro/pinckyycerebro.json"
@@ -269,6 +306,7 @@
         "name": "Pokemon GO",
         "active": true,
         "search": false,
+        "category": "Pokemon",
         "lengthStickers": 55,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemongo/pokemongo00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemongo/pokemongo.json"
@@ -276,6 +314,7 @@
         "name": "Pokemons",
         "active": true,
         "search": true,
+        "category": "Pokemon",
         "lengthStickers": 152,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemons/pokemons104.jpg",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/pokemons/pokemons.json"
@@ -283,6 +322,7 @@
         "name": "Real Madrid",
         "active": true,
         "search": false,
+        "category": "Futbol",
         "lengthStickers": 42,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/realmadrid/realmadrid00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/realmadrid/realmadrid.json"
@@ -290,6 +330,7 @@
         "name": "Ren & Stimpy",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 7,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/renystimpy/renystimpy00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/renystimpy/renystimpy.json"
@@ -297,6 +338,7 @@
         "name": "Sad Pepe",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 21,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/sadpepe/sadpepe00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/sadpepe/sadpepe.json"
@@ -304,6 +346,7 @@
         "name": "Shrek",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 19,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/shrek/shrek00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/shrek/shrek.json"
@@ -311,6 +354,7 @@
         "name": "Simpsons",
         "active": true,
         "search": false,
+        "category": "Dibujos",
         "lengthStickers": 74,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/simpsons/simpsons00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/simpsons/simpsons.json"
@@ -318,6 +362,7 @@
         "name": "Skulls",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 30,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/skulls/skulls00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/skulls/skulls.json"
@@ -325,6 +370,7 @@
         "name": "Sonic",
         "active": true,
         "search": false,
+        "category": "Juegos",
         "lengthStickers": 40,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/sonic/sonic00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/sonic/sonic.json"
@@ -332,6 +378,7 @@
         "name": "South Park",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 33,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/southpark/southpark00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/southpark/southpark.json"
@@ -339,6 +386,7 @@
         "name": "Star Wars",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 94,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/starwars/starwars00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/starwars/starwars.json"
@@ -346,6 +394,7 @@
         "name": "Superman",
         "active": true,
         "search": false,
+        "category": "Peliculas",
         "lengthStickers": 14,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/superman/superman00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/superman/superman.json"
@@ -353,13 +402,15 @@
         "name": "Troll Face",
         "active": true,
         "search": false,
+        "category": "Otros",
         "lengthStickers": 28,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/trollface/trollface00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/trollface/trollface.json"
     }, {
-        "name": "Varios",
+        "name": "Variado",
         "active": true,
         "search": false,
+        "category": "Populares",
         "lengthStickers": 122,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/varios/varios00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/varios/varios.json"
@@ -367,6 +418,7 @@
         "name": "Whatsapp",
         "active": true,
         "search": false,
+        "category": "Populares",
         "lengthStickers": 617,
         "image": "https://raw.githubusercontent.com/nicolexyn/stickers/master/whatsapp/whatsapp00.png",
         "url": "https://raw.githubusercontent.com/nicolexyn/stickers/master/whatsapp/whatsapp.json"
